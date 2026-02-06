@@ -1,8 +1,35 @@
+import prismaClient from "../../prisma/index";
 
-class CreateProductsService{
-    async execute(){
-        return "Funcionou"
-    }
+interface CreateProductsProps {
+  code: string;
+  name: string;
+  price: number;
 }
 
-export {CreateProductsService}
+class CreateProductsService {
+  async execute({ code, name, price }: CreateProductsProps) {
+    console.log({ code, name, price });
+
+    const productAlreadyExists = await prismaClient.product.findFirst({
+      where: {
+        code: code,
+      },
+    });
+
+    if (productAlreadyExists) {
+      throw new Error("Produto já existente!");
+    }
+
+    const products = await prismaClient.product.create({
+      data: {
+        code,
+        name,
+        price,
+      },
+    });
+
+    return products.name;
+  }
+}
+
+export { CreateProductsService };
