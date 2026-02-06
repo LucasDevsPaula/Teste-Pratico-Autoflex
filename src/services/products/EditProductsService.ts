@@ -5,12 +5,8 @@ interface UpdateProductProps {
   price: number;
 }
 
-
 class EditProductsService {
-  async execute(
-    { name, price }: UpdateProductProps,
-    productId: string
-  ) {
+  async execute({ name, price }: UpdateProductProps, productId: string) {
     const product = await prismaClient.product.findUnique({
       where: {
         id: productId,

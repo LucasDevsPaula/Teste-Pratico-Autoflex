@@ -9,6 +9,7 @@ import { createProductsSchema } from "./schemas/porductsSchema";
 import { CreateProductsController } from "./controllers/products/CreateProductsController";
 import { ListAllProductsController } from "./controllers/products/ListAllProductsController";
 import { EditProductsController } from "./controllers/products/EditProductsController";
+import { DeleteProductsController } from "./controllers/products/DeleteProductsController";
 
 const router = Router();
 
@@ -20,9 +21,8 @@ router.post(
 
 router.get("/products", new ListAllProductsController().handle);
 
-router.put(
-  "/products/:productId",
-  new EditProductsController().handle,
-);
+router.put("/products/:productId", new EditProductsController().handle);
+
+router.delete("/products/:productId", new DeleteProductsController().handle);
 
 export { router };
