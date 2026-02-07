@@ -14,6 +14,7 @@ import { DeleteProductsController } from "./controllers/products/DeleteProductsC
 
 //rawMaterial
 import { CreateRawMaterialController } from "./controllers/rawMaterials/CreateRawMaterialsController";
+import { ListAllRawMaterialsController } from "./controllers/rawMaterials/ListAllRawMaterialsController";
 
 const router = Router();
 
@@ -34,5 +35,7 @@ router.post(
   validateSchema(createRawMaterialSchema),
   new CreateRawMaterialController().handle,
 );
+
+router.get("/rawMaterials", new ListAllRawMaterialsController().handle);
 
 export { router };
