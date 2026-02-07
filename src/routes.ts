@@ -15,6 +15,7 @@ import { DeleteProductsController } from "./controllers/products/DeleteProductsC
 //rawMaterial
 import { CreateRawMaterialController } from "./controllers/rawMaterials/CreateRawMaterialsController";
 import { ListAllRawMaterialsController } from "./controllers/rawMaterials/ListAllRawMaterialsController";
+import { EditRawMaterialsController } from "./controllers/rawMaterials/EditRawMaterialsController";
 
 const router = Router();
 
@@ -37,5 +38,10 @@ router.post(
 );
 
 router.get("/rawMaterials", new ListAllRawMaterialsController().handle);
+
+router.put(
+  "/rawMaterials/:rawMaterialsId",
+  new EditRawMaterialsController().handle,
+);
 
 export { router };
