@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const createProductsSchema = z.object({
+export const createRawMaterialSchema = z.object({
   body: z.object({
     code: z
       .string({ message: "O código precisa ser um texto" })
@@ -8,6 +8,6 @@ export const createProductsSchema = z.object({
     name: z
       .string({ message: "O nome precisa ser um texto" })
       .min(3, { message: "O nome precisa ter no mínimo 3 letras" }),
-    price: z.number({ message: "O preço precisa ser um número" }),
+    stockyQuantity: z.number({ message: "A quantitade precisa ser um número" }),
   }),
 });
