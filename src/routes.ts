@@ -16,6 +16,7 @@ import { DeleteProductsController } from "./controllers/products/DeleteProductsC
 import { CreateRawMaterialController } from "./controllers/rawMaterials/CreateRawMaterialsController";
 import { ListAllRawMaterialsController } from "./controllers/rawMaterials/ListAllRawMaterialsController";
 import { EditRawMaterialsController } from "./controllers/rawMaterials/EditRawMaterialsController";
+import { DeleteRawMaterialsController } from "./controllers/rawMaterials/DeleteRawMaterialsController";
 
 const router = Router();
 
@@ -42,6 +43,11 @@ router.get("/rawMaterials", new ListAllRawMaterialsController().handle);
 router.put(
   "/rawMaterials/:rawMaterialsId",
   new EditRawMaterialsController().handle,
+);
+
+router.delete(
+  "/rawMaterials/:rawMaterialsId",
+  new DeleteRawMaterialsController().handle,
 );
 
 export { router };
