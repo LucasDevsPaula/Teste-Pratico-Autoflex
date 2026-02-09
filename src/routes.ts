@@ -5,6 +5,7 @@ import { validateSchema } from "./middleware/validateSchema";
 //schemas
 import { createProductsSchema } from "./schemas/porductsSchema";
 import { createRawMaterialSchema } from "./schemas/rawMaterialsSchema";
+import { createProductRawMaterialSchema } from "./schemas/productRawMaterialsSchema";
 
 //products
 import { CreateProductsController } from "./controllers/products/CreateProductsController";
@@ -17,6 +18,11 @@ import { CreateRawMaterialController } from "./controllers/rawMaterials/CreateRa
 import { ListAllRawMaterialsController } from "./controllers/rawMaterials/ListAllRawMaterialsController";
 import { EditRawMaterialsController } from "./controllers/rawMaterials/EditRawMaterialsController";
 import { DeleteRawMaterialsController } from "./controllers/rawMaterials/DeleteRawMaterialsController";
+
+//ProductRawMaterial
+import { CreateProductRawMaterialController } from "./controllers/productsRawMaterials/CreateProductsRawMaterialsController";
+import { ListProductsRawMaterialsController } from "./controllers/productsRawMaterials/ListProductsRawMaterialsController";
+import { EditProductRawMaterialsController } from "./controllers/productsRawMaterials/EditProductsRawMaterialsController";
 
 const router = Router();
 
@@ -50,4 +56,19 @@ router.delete(
   new DeleteRawMaterialsController().handle,
 );
 
+router.post(
+  "/product/composition",
+  validateSchema(createProductRawMaterialSchema),
+  new CreateProductRawMaterialController().handle,
+);
+
+router.get(
+  "/product/composition",
+  new ListProductsRawMaterialsController().handle,
+);
+
+router.put(
+  "/product/composition",
+  new EditProductRawMaterialsController().handle,
+);
 export { router };
