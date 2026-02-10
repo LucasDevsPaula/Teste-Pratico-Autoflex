@@ -6,6 +6,19 @@ class ListAllProductsService {
       orderBy: {
         created_at: "desc",
       },
+      include: {
+        materials: {
+          select: {
+            rawMaterial: {
+              select: {
+                name: true,
+                code: true,
+              },
+            },
+            requiredQuantity: true,
+          },
+        },
+      },
     });
 
     return { products };

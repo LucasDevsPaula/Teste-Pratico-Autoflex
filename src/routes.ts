@@ -12,6 +12,7 @@ import { CreateProductsController } from "./controllers/products/CreateProductsC
 import { ListAllProductsController } from "./controllers/products/ListAllProductsController";
 import { EditProductsController } from "./controllers/products/EditProductsController";
 import { DeleteProductsController } from "./controllers/products/DeleteProductsController";
+import { ListAvaliableProductController } from "./controllers/products/ListAvaliableProductController";
 
 //rawMaterial
 import { CreateRawMaterialController } from "./controllers/rawMaterials/CreateRawMaterialsController";
@@ -21,7 +22,6 @@ import { DeleteRawMaterialsController } from "./controllers/rawMaterials/DeleteR
 
 //ProductRawMaterial
 import { CreateProductRawMaterialController } from "./controllers/productsRawMaterials/CreateProductsRawMaterialsController";
-import { ListProductsRawMaterialsController } from "./controllers/productsRawMaterials/ListProductsRawMaterialsController";
 import { EditProductRawMaterialsController } from "./controllers/productsRawMaterials/EditProductsRawMaterialsController";
 
 const router = Router();
@@ -37,6 +37,8 @@ router.get("/products", new ListAllProductsController().handle);
 router.put("/products/:productId", new EditProductsController().handle);
 
 router.delete("/products/:productId", new DeleteProductsController().handle);
+
+router.get("/products/avaliable", new ListAvaliableProductController().handle);
 
 router.post(
   "/rawMaterials",
@@ -60,11 +62,6 @@ router.post(
   "/product/composition",
   validateSchema(createProductRawMaterialSchema),
   new CreateProductRawMaterialController().handle,
-);
-
-router.get(
-  "/product/composition",
-  new ListProductsRawMaterialsController().handle,
 );
 
 router.put(
